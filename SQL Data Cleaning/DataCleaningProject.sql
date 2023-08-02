@@ -1,5 +1,5 @@
 /*
-Nashville Housing Data Cleaning
+Nashville Housing Data - Cleaning Project
 */
 
 
@@ -14,7 +14,7 @@ SELECT SaleDateConverted
 FROM Portfolio_Project_2.dbo.NashvilleHousing
 
 
--- Populate PropertyAddress data for houses with same ParcelID
+-- Populate PropertyAddress data for houses with the same ParcelID
 SELECT a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL(a.PropertyAddress, b.PropertyAddress)
 FROM Portfolio_Project_2.dbo.NashvilleHousing a
 JOIN Portfolio_Project_2.dbo.NashvilleHousing b
