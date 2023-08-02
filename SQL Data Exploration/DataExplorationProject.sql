@@ -1,5 +1,5 @@
 /*
-Covid-19 Data Exploration
+Covid-19 Data - Exploration Project
 Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 */
 
@@ -14,7 +14,7 @@ ORDER BY 1, 2
 
 
 -- Total Cases vs Population
--- Percentage of population infected with Covid-19
+-- Percentage of the population infected with Covid-19
 SELECT location, date, population, total_cases, (total_cases/population)*100 AS PercentPopulationInfected
 FROM CovidDeaths
 --WHERE location LIKE '%Canada%' 
@@ -22,7 +22,7 @@ WHERE continent IS NOT NULL
 ORDER BY 1, 2
 
 
--- Countries with Highest Infection Rate
+-- Countries with the Highest Infection Rate
 SELECT location, population, MAX(CAST(total_cases AS int)) AS HighestInfectionCount,  MAX((total_cases/Population)*100) AS PercentPopulationInfected
 FROM CovidDeaths
 WHERE continent IS NOT NULL
@@ -30,7 +30,7 @@ GROUP BY location, population
 ORDER BY PercentPopulationInfected DESC
 
 
--- Countries with Highest Death Count
+-- Countries with the Highest Death Count
 SELECT location, MAX(CAST(total_deaths AS int)) AS TotalDeathCount
 FROM CovidDeaths
 WHERE continent IS NOT NULL
@@ -38,7 +38,7 @@ GROUP BY location
 ORDER BY TotalDeathCount DESC
 
 
--- Contintents with Highest Death Count
+-- Continents with the Highest Death Count
 SELECT location, MAX(CAST(total_deaths AS int)) AS TotalDeathCount
 FROM CovidDeaths
 WHERE location IN ('Africa', 'Asia', 'Europe', 'North America', 'Oceania', 'South America')
@@ -65,7 +65,7 @@ JOIN CovidVaccinations v
 WHERE d.continent IS NOT NULL
 ORDER BY 1,2
 
--- Using CTE to perform calculation
+-- Using CTE to perform a calculation
 WITH PopvsDos(location, date, population, new_vaccinations, RollingAdministeredDoses, people_fully_vaccinated)
 AS
 (
@@ -82,7 +82,7 @@ SELECT *, (RollingAdministeredDoses/population) AS AverageDosesPerPerson, (peopl
 FROM PopvsDos
 ORDER BY 1,2
 
--- Using Temp Table to perform calculation
+-- Using Temp Table to perform a calculation
 DROP TABLE IF EXISTS #AverageDosesPerPerson
 CREATE TABLE #AverageDosesPerPerson
 (
